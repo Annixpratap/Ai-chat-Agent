@@ -6,41 +6,46 @@ Production-ready AI-powered customer support chat widget. Node.js + TypeScript b
 
 ### Prerequisites
 - Node.js 18+
-- API key: [Google Gemini (FREE)](https://makersuite.google.com/app/apikey) or [Anthropic](https://console.anthropic.com) or [OpenAI](https://platform.openai.com)
+- API key (choose one):
+  - **Google Gemini (FREE)** ⭐ [Get key](https://makersuite.google.com/app/apikey)
+  - **Anthropic Claude** [Get key](https://console.anthropic.com)
+  - **OpenAI GPT** [Get key](https://platform.openai.com)
 
-### Backend
+### Backend Setup
 ```bash
 cd backend
 npm install
 cp .env.example .env
-# Edit .env: add GEMINI_API_KEY (free) OR ANTHROPIC_API_KEY OR OPENAI_API_KEY
+# Edit .env: add GEMINI_API_KEY (recommended) OR ANTHROPIC_API_KEY OR OPENAI_API_KEY
 npm run seed    # Initialize database
 npm run dev     # Runs on http://localhost:3000
 ```
 
-### Frontend (new terminal)
+### Frontend Setup (new terminal)
 ```bash
 cd frontend
 npm install
 npm run dev     # Runs on http://localhost:5173
 ```
 
-Open http://localhost:5173 and start chatting!
+Open http://localhost:5173 and start chatting! 🚀
 
 ## Features
 
-✅ Real-time AI chat with Anthropic Claude or OpenAI GPT
+✅ Real-time AI chat with Google Gemini, Anthropic Claude, or OpenAI GPT
+✅ Free tier support (Google Gemini)
 ✅ Persistent conversation history (SQLite)
 ✅ Session recovery on page refresh
-✅ Clean, responsive UI (mobile-friendly)
+✅ Beautiful, responsive UI (mobile-friendly)
+✅ Modern design with smooth animations
 ✅ Input validation & error handling
 ✅ Type-safe with TypeScript
 ✅ Production-ready code structure
 
 ## Tech Stack
 
-**Backend:** Node.js, Express, TypeScript, SQLite, Anthropic/OpenAI SDK
-**Frontend:** Svelte, Vite, TypeScript
+**Backend:** Node.js, Express, TypeScript, SQLite, Google Gemini/Anthropic/OpenAI SDK
+**Frontend:** Svelte, Vite, TypeScript with modern animations
 **Database:** SQLite (zero setup)
 
 ## API Endpoints
@@ -62,10 +67,10 @@ Response: { "conversationId": "uuid", "messages": [...] }
 
 ### Backend (`backend/.env`)
 ```
-LLM_PROVIDER=gemini                 # or 'openai' or 'anthropic'
-GEMINI_API_KEY=                     # FREE - recommended (get from console.google.com/generative-ai)
-ANTHROPIC_API_KEY=sk-ant-...        # Optional - for Anthropic
-OPENAI_API_KEY=sk-...               # Optional - for OpenAI
+LLM_PROVIDER=gemini                 # 'gemini' (FREE - default), 'openai', or 'anthropic'
+GEMINI_API_KEY=                     # Google Gemini API key (FREE - recommended)
+ANTHROPIC_API_KEY=sk-ant-...        # Optional - Anthropic Claude API key
+OPENAI_API_KEY=sk-...               # Optional - OpenAI API key
 PORT=3000
 NODE_ENV=development
 FRONTEND_URL=http://localhost:5173
@@ -141,8 +146,8 @@ cp .env.example .env
 ### Step 3: Configure Environment Variables
 Edit `backend/.env`:
 ```
-LLM_PROVIDER=anthropic
-ANTHROPIC_API_KEY=sk-ant-your-actual-key-here
+LLM_PROVIDER=gemini
+GEMINI_API_KEY=your-gemini-api-key-here
 PORT=3000
 NODE_ENV=development
 FRONTEND_URL=http://localhost:5173
@@ -150,9 +155,9 @@ DATABASE_PATH=./data/chat.db
 ```
 
 Get your API key (choose one):
-- **Google Gemini (FREE):** https://makersuite.google.com/app/apikey ⭐ Recommended
-- **Anthropic:** https://console.anthropic.com → API Keys
-- **OpenAI:** https://platform.openai.com → API Keys
+- **Google Gemini (FREE):** https://makersuite.google.com/app/apikey ⭐ **Recommended** - Free tier, no credit card required
+- **Anthropic Claude:** https://console.anthropic.com → API Keys
+- **OpenAI GPT:** https://platform.openai.com → API Keys
 
 ### Step 4: Initialize Database
 ```bash
@@ -318,9 +323,9 @@ Services
 - **Why:** Independent deployment, team separation, different build tools
 - **Benefit:** Can scale backend without redeploying frontend
 
-### 2. **LLM Provider Abstraction**
-- **Why:** Interface pattern for OpenAI/Anthropic
-- **Benefit:** Swap providers without changing business logic, easy to add Cohere/Claude later
+### 2. **Multi-LLM Provider Abstraction**
+- **Why:** Interface pattern for Google Gemini, Anthropic, and OpenAI
+- **Benefit:** Easy provider switching, no code changes needed, free tier support (Gemini)
 
 ### 3. **SQLite for MVP**
 - **Why:** Zero setup, file-based, good for single-instance
@@ -333,16 +338,21 @@ Services
 - **Trade-off:** Knowledge updates require code changes
 
 ### 5. **Svelte for Frontend**
-- **Why:** Reactive by default, small bundle size, clean syntax
-- **Benefit:** Less boilerplate than React, better performance
+- **Why:** Reactive by default, small bundle size, clean syntax, smooth animations
+- **Benefit:** Less boilerplate than React, better performance, modern design language
 - **Trade-off:** Smaller ecosystem
 
-### 6. **Stateless Backend**
+### 6. **Modern Design Language**
+- **Why:** Professional appearance with gradients, animations, and visual hierarchy
+- **Benefit:** Premium feel, better user engagement, responsive on all devices
+- **Features:** Gradient buttons, spring animations, smooth transitions, Spur AI brand colors
+
+### 7. **Stateless Backend**
 - **Why:** Conversation ID = session identifier stored in localStorage + DB
 - **Benefit:** Scales horizontally, no server-side sessions
 - **Trade-off:** Can't track online status, need client-side session management
 
-### 7. **TypeScript Everywhere**
+### 8. **TypeScript Everywhere**
 - **Why:** Type safety at compile time
 - **Benefit:** Fewer runtime errors, better IDE support, self-documenting
 - **Trade-off:** Longer setup time
@@ -353,25 +363,36 @@ Services
 
 ### Supported Providers
 
-#### Anthropic Claude (Default)
+#### Google Gemini (FREE - Recommended) ⭐
+```env
+LLM_PROVIDER=gemini
+GEMINI_API_KEY=your-api-key
+```
+- **Model:** `gemini-2.5-flash-lite`
+- **Cost:** Completely FREE (no credit card required)
+- **Rate Limits:** 15 RPM, 1,000 daily requests (free tier)
+- **Features:** Fast, reliable, 1M context window
+- **Get Key:** https://makersuite.google.com/app/apikey
+
+#### Anthropic Claude
 ```env
 LLM_PROVIDER=anthropic
 ANTHROPIC_API_KEY=sk-ant-xxxxxxxxxxxxx
 ```
-- Model: `claude-3-5-sonnet-20241022`
-- Max tokens: 500
-- Temperature: 0.7
-- Cost: ~$0.003 per 1K input tokens
+- **Model:** `claude-3-5-sonnet-20241022`
+- **Max tokens:** 500
+- **Temperature:** 0.7
+- **Cost:** ~$0.003 per 1K input tokens
 
 #### OpenAI GPT
 ```env
 LLM_PROVIDER=openai
 OPENAI_API_KEY=sk-xxxxxxxxxxxxx
 ```
-- Model: `gpt-3.5-turbo`
-- Max tokens: 500
-- Temperature: 0.7
-- Cost: ~$0.0005 per 1K input tokens
+- **Model:** `gpt-3.5-turbo`
+- **Max tokens:** 500
+- **Temperature:** 0.7
+- **Cost:** ~$0.0005 per 1K input tokens
 
 ### System Prompt
 
